@@ -5,17 +5,20 @@ import * as yup from "yup";
 
 const SignUp = () => {
   const [inputvalue, setInputValue] = useState({});
-  console.log(inputvalue?.firstname, "firstname");
   const { error, setError } = useState({});
-  localStorage.setItem("signupValue", JSON.stringify(inputvalue));
 
   const HandleChangeValue = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setInputValue((prev) => ({
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Submit");
+    localStorage.setItem("signupValue", JSON.stringify(inputvalue));
   };
   return (
     <>
@@ -110,6 +113,7 @@ const SignUp = () => {
             <button
               className="bg-[#7b68ee] p-2 rounded-md text-white w-full hover:bg-[#5f48ea]"
               type="submit"
+              onClick={handleSubmit}
             >
               Sign Up
             </button>

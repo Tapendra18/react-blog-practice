@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CommonInput from "../common/commonInput";
 
 const Login = () => {
+  const [inputvalue, setInputValue] = useState({});
+  console.log(inputvalue);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue({ ...inputvalue, [name]: value });
+  };
+
   return (
     <>
       <div>
@@ -37,14 +45,24 @@ const Login = () => {
                 <label className="text-xs" htmlFor="">
                   Work Email
                 </label>
-                <CommonInput type="text" placeholder="Enter your work email" />
+                <CommonInput
+                  type="text"
+                  placeholder="Enter your work email"
+                  onChangeValue={handleChange}
+                  name="email"
+                />
               </div>
               <div className="flex gap-2 flex-col ">
                 <label className="text-xs" htmlFor="">
                   password
                 </label>
 
-                <CommonInput type="password" placeholder="Enter password" />
+                <CommonInput
+                  type="password"
+                  placeholder="Enter password"
+                  onChangeValue={handleChange}
+                  name="password"
+                />
                 <a
                   href="#"
                   className="text-xs text-[#7b68ee] cursor-pointer w-fit"

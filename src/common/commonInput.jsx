@@ -1,6 +1,6 @@
 import React from "react";
 
-const CommonInput = ({ placeholder, type, name, id, onChangeValue }) => {
+const CommonInput = ({ placeholder, type, name, id, onChangeValue, value }) => {
   return (
     <>
       {" "}
@@ -19,6 +19,7 @@ const CommonInput = ({ placeholder, type, name, id, onChangeValue }) => {
         name={name}
         id={id}
         onChange={onChangeValue}
+        value={value}
       />
     </>
   );

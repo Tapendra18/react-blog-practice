@@ -22,7 +22,15 @@ export const signUp = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      if (error.response) {
+        // Return the error response message for status codes 500 and 402
+        if (error.response.status === 500 || error.response.status === 402) {
+          return rejectWithValue(error.response.data.message);
+        }
+        // Handle other status codes as needed
+      }
+      // Handle network or other errors
+      return rejectWithValue("An unexpected error occurred. Please try again.");
     }
   }
 );

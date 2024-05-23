@@ -1,16 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import CommonInput from "../common/commonInput";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp } from "../redux/UserSlice";
 
 const SignUp = () => {
   const [inputvalue, setInputValue] = useState({});
   const [images, setImageUpload] = useState(null);
   const [error, setError] = useState({});
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useNavigate();
+  const signUpError = useSelector((state) => state.user); // Get error from Redux store
 
   const handleProfile = (e) => {
     setImageUpload(e.target.files[0]);
@@ -26,7 +26,6 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     if (validateForm()) {
       const data = new FormData();
       data.append("first_name", inputvalue.first_name);
@@ -36,14 +35,17 @@ const SignUp = () => {
       data.append("phone", inputvalue.phone);
       data.append("profile_image", images);
 
-      await dispatch(signUp(data));
-
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
-      setLoading(false);
+      try {
+        await dispatch(signUp(data)).unwrap();
+        // On successful signup, you can navigate to another page
+        history.push("/login");
+      } catch (error) {
+        // Error is handled by showing the message in the frontend
+        setError({
+          apiError: error || "An error occurred. Please try again.",
+        });
+      }
     }
-    setLoading(false);
   };
 
   const validateForm = () => {
@@ -217,15 +219,18 @@ const SignUp = () => {
               type="submit"
               onClick={handleSubmit}
             >
-              {loading ? <>loading...</> : <>Sign Up</>}
+              Sign Up
             </button>
+            {error.apiError && (
+              <p className="text-red-500 text-xs mt-1">{error.apiError}</p>
+            )}
             <h6
               className="text-xs text-[#7b68ee] cursor-pointer"
               style={{
                 margin: "auto",
               }}
             >
-              or SignUp with Google
+              or Sign Up with Google
             </h6>
           </div>
         </div>

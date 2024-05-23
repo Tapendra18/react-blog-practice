@@ -21,6 +21,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import { Button, Link } from "@mui/material";
 import KanbanBoard from "./kanbanView";
 import ListView from "./ListView";
+import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -93,6 +94,13 @@ export default function Dashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [view, setView] = React.useState("card");
+  const history = useNavigate();
+
+  const handleLogout = () => {
+    // Perform token removal logic here (example: clear localStorage)
+    localStorage.removeItem("token");
+    history("/");
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -133,26 +141,40 @@ export default function Dashboard() {
         </DrawerHeader>
         <Divider />
         <List>
-          {["dashboard", "Chat", "profile"].map((text, index) => (
+          {["dashboard", "Chat", "profile", "Logout"].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+              {text === "Logout" ? (
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
+                    minHeight: 48,
                     justifyContent: "center",
+                    px: 2.5,
+                  }}
+                  onClick={handleLogout}
+                >
+                  <ListItemIcon
+                    sx={{ minWidth: 0, mr: "auto", justifyContent: "center" }}
+                  >
+                    <MailIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              ) : (
+                <ListItemButton
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: "center",
+                    px: 2.5,
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{ minWidth: 0, mr: "auto", justifyContent: "center" }}
+                  >
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              )}
             </ListItem>
           ))}
         </List>

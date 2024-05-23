@@ -4,11 +4,32 @@ import CommonInput from "../common/commonInput";
 
 const Login = () => {
   const [inputvalue, setInputValue] = useState({});
-  console.log(inputvalue);
-
+  const [error, setError] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputvalue, [name]: value });
+  };
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {};
+
+    if (!inputvalue?.email) {
+      valid = false;
+      newErrors.email = "Email is required";
+    }
+
+    if (!inputvalue?.password) {
+      valid = false;
+      newErrors.password = "Password is required";
+    }
+
+    setError(newErrors);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    validateForm();
   };
 
   return (
@@ -51,6 +72,9 @@ const Login = () => {
                   onChangeValue={handleChange}
                   name="email"
                 />
+                {error.email && (
+                  <p className="text-red-500 text-xs mt-1">{error.email}</p>
+                )}
               </div>
               <div className="flex gap-2 flex-col ">
                 <label className="text-xs" htmlFor="">
@@ -63,6 +87,9 @@ const Login = () => {
                   onChangeValue={handleChange}
                   name="password"
                 />
+                {error.password && (
+                  <p className="text-red-500 text-xs mt-1">{error.password}</p>
+                )}
                 <a
                   href="#"
                   className="text-xs text-[#7b68ee] cursor-pointer w-fit"
@@ -71,7 +98,10 @@ const Login = () => {
                 </a>
               </div>
             </div>
-            <button className="bg-[#7b68ee] p-2 rounded-md text-white w-full hover:bg-[#5f48ea]">
+            <button
+              className="bg-[#7b68ee] p-2 rounded-md text-white w-full hover:bg-[#5f48ea]"
+              onClick={handleSubmit}
+            >
               Login
             </button>
             <h6

@@ -5,11 +5,20 @@ const Header = () => {
   const authToken = localStorage.getItem("token");
 
   return (
-    <div className="flex h-35 justify-between p-3 bg-[#fafbfc]">
-      <div className="flex items-center">
+    <div className="flex h-35 justify-between p-3 bg-[#fefdfc] w-full fixed">
+      <div className="flex items-center gap-2">
         <Link to={"/"}>
-          <h6 className="text-sm text-gray-600 cursor-pointer">Gravity</h6>
+          <h6 className="text-md text-gray-600 cursor-pointer mr-3">Gravity</h6>
         </Link>
+        <h6 className="text-md p-1 text-[#25221e] cursor-pointer hover:bg-[rgba(37,34,30,.04)] hover:rounded-md pr-4 px-4">
+          Feature{" "}
+        </h6>
+        <h6 className="text-md p-1 text-[#25221e] cursor-pointer hover:bg-[rgba(37,34,30,.04)] hover:rounded-md pr-4 px-4">
+          About{" "}
+        </h6>
+        <h6 className="text-md p-1 text-[#25221e] cursor-pointer hover:bg-[rgba(37,34,30,.04)] hover:rounded-md pr-4 px-4">
+          For Teams{" "}
+        </h6>
       </div>
       {authToken ? (
         <>profile</>

@@ -31,7 +31,7 @@ body {
   padding: 30px 60px;
   position: relative;
   margin: auto;
-  /* top: 100px; */
+  top: 100px;
   display: flex;
   flex-direction: column;
   gap: 25px;

@@ -95,7 +95,7 @@ const SignUp = () => {
   return (
     <>
       <div>
-        <div className="flex h-35 justify-between p-3 bg-[#F7F7F8]">
+        <div className="flex h-35 justify-between p-3 bg-[#F7F7F8] w-full fixed z-30">
           <div className="flex items-center">
             <Link to={"/"}>
               <h6 className="text-sm text-gray-600 cursor-pointer">Gravity</h6>
@@ -116,7 +116,7 @@ const SignUp = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            height: "calc(100vh - 65px)",
+            height: "calc(100vh + 65px)",
             backgroundImage:
               "-webkit-linear-gradient(top left, #a802e0, #f7676a)",
           }}

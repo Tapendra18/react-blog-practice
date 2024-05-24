@@ -95,10 +95,18 @@ const SignUp = () => {
   return (
     <>
       <div>
-        <div className="flex h-35 justify-between p-3 bg-[#F7F7F8] w-full fixed z-30">
+        <div
+          className="flex h-35 justify-between p-3 bg-[#F7F7F8] w-full fixed z-30"
+          style={{
+            background:
+              "linear-gradient(rgb(239 233 255), rgb(248 245 255) 27.34%)",
+          }}
+        >
           <div className="flex items-center">
             <Link to={"/"}>
-              <h6 className="text-sm text-gray-600 cursor-pointer">Gravity</h6>
+              <h6 className="text-md text-[#4200ff] cursor-pointer mr-3">
+                Gravity
+              </h6>
             </Link>
           </div>
           <div className="flex items-center gap-2">
@@ -116,7 +124,7 @@ const SignUp = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            height: "calc(100vh + 65px)",
+            height: "calc(100vh + 0px)",
             backgroundImage:
               "-webkit-linear-gradient(top left, #a802e0, #f7676a)",
           }}

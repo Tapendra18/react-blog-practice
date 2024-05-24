@@ -20,14 +20,6 @@ const defaultCols = [
     id: "todo",
     title: "Todo",
   },
-  {
-    id: "doing",
-    title: "Work in progress",
-  },
-  {
-    id: "done",
-    title: "Done",
-  },
 ];
 
 const defaultTasks = [
@@ -41,21 +33,6 @@ const defaultTasks = [
     columnId: "todo",
     content:
       "Develop user registration functionality with OTP delivered on SMS after email confirmation and phone number confirmation",
-  },
-  {
-    id: "3",
-    columnId: "doing",
-    content: "Conduct security testing",
-  },
-  {
-    id: "4",
-    columnId: "doing",
-    content: "Analyze competitors",
-  },
-  {
-    id: "5",
-    columnId: "done",
-    content: "Create UI kit documentation",
   },
 ];
 
@@ -117,21 +94,21 @@ function ListView() {
               createNewColumn();
             }}
             className="
-      h-[60px]
-      w-[350px]
-      min-w-[350px]
-      cursor-pointer
-      rounded-lg
-      bg-mainBackgroundColor
-      border-2
-      border-columnBackgroundColor
-      p-4
-      ring-rose-500
-      hover:ring-2
-      flex
-      gap-2
-      text-white
-      "
+                      h-[60px]
+                      w-[350px]
+                      min-w-[350px]
+                      cursor-pointer
+                      rounded-lg
+                      bg-mainBackgroundColor
+                      border-2
+                      border-columnBackgroundColor
+                      p-4
+                      ring-rose-500
+                      hover:ring-2
+                      flex
+                      gap-2
+                      text-white
+                    "
           >
             <PlusIcon />
             Add Column

@@ -1,12 +1,16 @@
 import axios from "axios";
 
-const authToken = localStorage.getItem("token");
-
 const axiosInstance = axios.create({
   baseURL: "http://103.241.45.107/api",
+  withXSRFToken: false,
+  // headers: {
+  //   "content-type": "multipart/form-data",
+  //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+  // },
   headers: {
-    "content-type": "multipart/form-data",
-    Authorization: `Bearer ${authToken}`,
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    // Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
 });
 

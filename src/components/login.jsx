@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommonInput from "../common/commonInput";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../redux/UserSlice";
 
 const Login = () => {
   const [inputvalue, setInputValue] = useState({});
   const [error, setError] = useState({});
+  const dispatch = useDispatch();
+  const history = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputValue({ ...inputvalue, [name]: value });
@@ -25,20 +30,40 @@ const Login = () => {
     }
 
     setError(newErrors);
+    return valid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    validateForm();
+    if (validateForm()) {
+      try {
+        await dispatch(loginUser(inputvalue)).unwrap();
+        // On successful signup, you can navigate to another page
+        history.push("/dashboard");
+      } catch (error) {
+        // Error is handled by showing the message in the frontend
+        setError({
+          apiError: error || "An error occurred. Please try again.",
+        });
+      }
+    }
   };
 
   return (
     <>
       <div>
-        <div className="flex h-35 justify-between p-3 bg-[#F7F7F8] fixed w-full">
+        <div
+          className="flex h-35 justify-between p-3 bg-[#fefdfc] fixed w-full"
+          style={{
+            background:
+              "linear-gradient(rgb(239 233 255), rgb(248 245 255) 27.34%)",
+          }}
+        >
           <div className="flex items-center">
             <Link to={"/"}>
-              <h6 className="text-sm text-gray-600 cursor-pointer">Gravity</h6>
+              <h6 className="text-md text-[#4200ff] cursor-pointer mr-3">
+                Gravity
+              </h6>
             </Link>
           </div>
           <div className="flex items-center gap-2">

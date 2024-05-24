@@ -111,96 +111,98 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+    <>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
 
-      <Drawer variant="permanent" open={open} style={{}}>
-        <DrawerHeader>
-          {!open === true ? (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                marginRight: 0,
-                ...(open && { display: "none" }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
+        <Drawer variant="permanent" open={open} style={{}}>
+          <DrawerHeader>
+            {!open === true ? (
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                sx={{
+                  marginRight: 0,
+                  ...(open && { display: "none" }),
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
+            ) : (
+              <IconButton onClick={handleDrawerClose}>
+                {theme.direction === "rtl" ? (
+                  <ChevronRightIcon />
+                ) : (
+                  <ChevronLeftIcon />
+                )}
+              </IconButton>
+            )}
+          </DrawerHeader>
+          <Divider />
+          <List>
+            {["dashboard", "Chat", "profile", "Logout"].map((text, index) => (
+              <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                {text === "Logout" ? (
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: "center",
+                      px: 2.5,
+                    }}
+                    onClick={handleLogout}
+                  >
+                    <ListItemIcon
+                      sx={{ minWidth: 0, mr: "auto", justifyContent: "center" }}
+                    >
+                      <MailIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                ) : (
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: "center",
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{ minWidth: 0, mr: "auto", justifyContent: "center" }}
+                    >
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItemButton>
+                )}
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </Drawer>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            backgroundColor: "rgb(244 247 253)",
+            height: "calc(100vh - 10px)",
+          }}
+        >
+          <Box>
+            <Button onClick={() => setView("card")}>Card View</Button>
+            <Button onClick={() => setView("list")}>List View</Button>
+          </Box>
+          {view === "card" ? (
+            <KanbanBoard />
           ) : (
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
+            <div className="list-view">
+              <ListView />
+            </div>
           )}
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {["dashboard", "Chat", "profile", "Logout"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              {text === "Logout" ? (
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: "center",
-                    px: 2.5,
-                  }}
-                  onClick={handleLogout}
-                >
-                  <ListItemIcon
-                    sx={{ minWidth: 0, mr: "auto", justifyContent: "center" }}
-                  >
-                    <MailIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              ) : (
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{ minWidth: 0, mr: "auto", justifyContent: "center" }}
-                  >
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              )}
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-      </Drawer>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          backgroundColor: "rgb(244 247 253)",
-          height: "calc(100vh - 10px)",
-        }}
-      >
-        <Box>
-          <Button onClick={() => setView("card")}>Card View</Button>
-          <Button onClick={() => setView("list")}>List View</Button>
         </Box>
-        {view === "card" ? (
-          <KanbanBoard />
-        ) : (
-          <div className="list-view">
-            <ListView />
-          </div>
-        )}
       </Box>
-    </Box>
+    </>
   );
 }

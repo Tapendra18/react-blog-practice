@@ -7,6 +7,7 @@ import Dashboard from "./components/dashboard";
 import Profile from "./components/Profile";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import ThreeD from "./common/ThreeD";
 
 function App() {
   const authToken = localStorage.getItem("token");
@@ -24,6 +25,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/three" element={<ThreeD />} />
             </>
           )}
         </Routes>

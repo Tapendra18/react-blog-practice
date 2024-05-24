@@ -3,6 +3,7 @@ import Header from "../common/Header";
 import sprintImage from "../images/sprints.png";
 import Chat from "../images/chat.png";
 import { Typography } from "@mui/material";
+import Footer from "../common/Footer";
 
 const HomePage = () => {
   return (
@@ -36,7 +37,7 @@ const HomePage = () => {
           Become focused, organized, and calm with Gravity. The world’s #1 task
           manager and to-do list app.
         </Typography>
-        <h1 className="text-7xl m-8">
+        <h1 className="text-7xl m-14">
           <img src={sprintImage} alt="string" />
         </h1>
         <Typography
@@ -52,10 +53,11 @@ const HomePage = () => {
         >
           Chat with your Teams, Best Collaboration Tool for Teams
         </Typography>
-        <h1 className="text-7xl m-8">
+        <h1 className="text-7xl m-14">
           <img src={Chat} alt="Chat" />
         </h1>
       </div>
+      <Footer />
     </div>
   );
 };

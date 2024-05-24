@@ -31,8 +31,106 @@ body {
   padding: 30px 60px;
   position: relative;
   margin: auto;
-  top: 100px;
+  top: 30px;
   display: flex;
   flex-direction: column;
   gap: 25px;
+}
+
+.footer-16371 {
+  padding: 7rem 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(rgb(239, 233, 255), rgb(248, 245, 255) 27.34%);
+}
+
+.footer-16371 .footer-site-logo {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.footer-16371 .footer-site-logo a {
+  color: #4200ff;
+}
+
+.footer-16371 .nav-links {
+  padding: 0;
+  margin: 0;
+}
+
+.footer-16371 .nav-links li a {
+  padding: 10px;
+  color: #000;
+}
+
+.footer-16371 .social h3 {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-16371 .social ul li {
+  display: inline-block;
+}
+
+.footer-16371 .social ul li.in a {
+  color: #df588a;
+}
+
+[class^="icon-"] {
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-instagram:before {
+  content: "\f16d";
+}
+
+.footer-16371 .social ul li.fb a {
+  color: #3742d0;
+}
+
+.footer-16371 .social ul li a {
+  display: inline-block;
+  padding: 10px;
+}
+
+.icon-facebook:before {
+  content: "\f09a";
+}
+
+.footer-16371 .social ul li.tw a {
+  color: #15b8ff;
+}
+
+.icon-twitter:before {
+  content: "\f099";
+}
+
+.footer-16371 .social ul li.pin a {
+  color: #dd4d5a;
+}
+
+.icon-pinterest:before {
+  content: "\f0d2";
+}
+
+.footer-16371 .social ul li.dr a {
+  color: #fa38c1;
+}
+
+.icon-dribbble:before {
+  content: "\f17d";
 }

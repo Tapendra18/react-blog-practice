@@ -20,6 +20,7 @@ export const signUp = createAsyncThunk(
           },
         }
       );
+      localStorage.setItem("user", JSON.stringify(response?.data?.data));
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -41,11 +42,24 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axiosInstance.post(
         "/practical_2/login",
-        loginData
+        loginData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
+      localStorage.setItem("login", JSON.stringify(response?.data?.data));
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      if (error.response) {
+        const { status, data } = error.response;
+        if (status === 500 || status === 402) {
+          return rejectWithValue(data.message);
+        }
+        return rejectWithValue(data);
+      }
+      return rejectWithValue(error.message);
     }
   }
 );

@@ -43,11 +43,6 @@ export const loginUser = createAsyncThunk(
       const response = await axiosInstance.post(
         "/practical_2/login",
         loginData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
       );
       localStorage.setItem("login", JSON.stringify(response?.data?.data));
       return response.data;

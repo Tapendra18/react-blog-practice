@@ -85,6 +85,7 @@ const Login = () => {
               "-webkit-linear-gradient(top left, #a802e0, #f7676a)",
           }}
         >
+          <form></form>
           <div className="login-box-style">
             <h6 className="text-xl font-semibold text-center">Welcome back!</h6>
             <div className="flex gap-2 flex-col">
